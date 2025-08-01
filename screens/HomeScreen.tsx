@@ -20,6 +20,31 @@ const SpecItem = ({ icon, title, subtitle, color }: SpecItemProps) => (
   </View>
 );
 
+const Glasses3D = () => (
+  <View style={styles.glassesModel}>
+    {/* Left lens */}
+    <View style={styles.lens}>
+      <View style={styles.lensInner} />
+      <View style={styles.lensReflection} />
+    </View>
+    
+    {/* Bridge */}
+    <View style={styles.bridge} />
+    
+    {/* Right lens */}
+    <View style={styles.lens}>
+      <View style={styles.lensInner} />
+      <View style={styles.lensReflection} />
+    </View>
+    
+    {/* Left temple */}
+    <View style={[styles.temple, styles.templeLeft]} />
+    
+    {/* Right temple */}
+    <View style={[styles.temple, styles.templeRight]} />
+  </View>
+);
+
 const HomeScreen = () => {
   return (
     <LinearGradient colors={['#6B7280', '#4B5563']} style={styles.container}>
@@ -38,12 +63,8 @@ const HomeScreen = () => {
 
           <View style={styles.glassesContainer}>
             <View style={styles.glassesPlaceholder}>
-              {/* 3D Glasses mockup */}
-              <Image
-                source={{ uri: 'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/glasses-3d-mockup-placeholder.png' }}
-                style={styles.glassesMockup}
-                resizeMode="contain"
-              />
+              {/* 3D Glasses model */}
+              <Glasses3D />
             </View>
           </View>
 
@@ -132,9 +153,70 @@ const styles = StyleSheet.create({
     shadowRadius: 8,
     elevation: 8,
   },
-  glassesMockup: {
-    width: 80,
-    height: 60,
+  glassesModel: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
+    width: 100,
+    height: 50,
+    position: 'relative',
+  },
+  lens: {
+    width: 28,
+    height: 28,
+    borderRadius: 14,
+    backgroundColor: 'rgba(0, 0, 0, 0.7)',
+    borderWidth: 2,
+    borderColor: '#E5E7EB',
+    position: 'relative',
+    marginHorizontal: 3,
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.3,
+    shadowRadius: 4,
+    elevation: 4,
+  },
+  lensInner: {
+    position: 'absolute',
+    top: 2,
+    left: 2,
+    width: 20,
+    height: 20,
+    borderRadius: 10,
+    backgroundColor: 'rgba(0, 0, 0, 0.3)',
+  },
+  lensReflection: {
+    position: 'absolute',
+    top: 4,
+    left: 6,
+    width: 8,
+    height: 8,
+    borderRadius: 4,
+    backgroundColor: 'rgba(255, 255, 255, 0.4)',
+  },
+  bridge: {
+    width: 12,
+    height: 3,
+    backgroundColor: '#E5E7EB',
+    borderRadius: 2,
+    marginHorizontal: -3,
+    zIndex: 1,
+  },
+  temple: {
+    position: 'absolute',
+    width: 20,
+    height: 2,
+    backgroundColor: '#E5E7EB',
+    borderRadius: 1,
+    top: 12,
+  },
+  templeLeft: {
+    right: 68,
+    transform: [{ rotate: '-15deg' }],
+  },
+  templeRight: {
+    left: 68,
+    transform: [{ rotate: '15deg' }],
   },
   specificationsTitle: {
     fontSize: 24,
