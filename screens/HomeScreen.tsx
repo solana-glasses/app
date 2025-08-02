@@ -20,30 +20,7 @@ const SpecItem = ({ icon, title, subtitle, color }: SpecItemProps) => (
   </View>
 );
 
-const Glasses3D = () => (
-  <View style={styles.glassesModel}>
-    {/* Left lens */}
-    <View style={styles.lens}>
-      <View style={styles.lensInner} />
-      <View style={styles.lensReflection} />
-    </View>
-    
-    {/* Bridge */}
-    <View style={styles.bridge} />
-    
-    {/* Right lens */}
-    <View style={styles.lens}>
-      <View style={styles.lensInner} />
-      <View style={styles.lensReflection} />
-    </View>
-    
-    {/* Left temple */}
-    <View style={[styles.temple, styles.templeLeft]} />
-    
-    {/* Right temple */}
-    <View style={[styles.temple, styles.templeRight]} />
-  </View>
-);
+
 
 const HomeScreen = () => {
   return (
@@ -64,7 +41,11 @@ const HomeScreen = () => {
           <View style={styles.glassesContainer}>
             <View style={styles.glassesPlaceholder}>
               {/* 3D Glasses model */}
-              <Glasses3D />
+              <Image
+                source={require('../assets/sol-glass-mock.png')}
+                style={styles.glassesMockup}
+                resizeMode="contain"
+              />
             </View>
           </View>
 
@@ -98,8 +79,8 @@ const styles = StyleSheet.create({
   container: { flex: 1 },
   safeArea: { 
     flex: 1, 
-    paddingHorizontal: 40,
-    paddingTop: 20,
+    paddingHorizontal: 32,
+    paddingTop: 15,
   },
   scrollContent: {
     paddingBottom: 40,
@@ -108,12 +89,12 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
-    marginTop: 30,
-    marginBottom: 25,
+    marginTop: 25,
+    marginBottom: 15,
     backgroundColor: 'rgba(255, 255, 255, 0.15)',
-    padding: 32,
+    padding: 28,
     borderRadius: 24,
-    marginHorizontal: 8,
+    marginHorizontal: 6,
   },
   greeting: { 
     fontSize: 28, 
@@ -135,14 +116,14 @@ const styles = StyleSheet.create({
   },
   glassesContainer: { 
     alignItems: 'center', 
-    marginVertical: 55,
-    paddingHorizontal: 35,
+    marginVertical: 45,
+    paddingHorizontal: 25,
   },
   glassesPlaceholder: {
-    width: '95%',
-    height: 180,
+    width: '90%',
+    height: 140,
     backgroundColor: 'rgba(255, 255, 255, 0.15)',
-    borderRadius: 70,
+    borderRadius: 60,
     justifyContent: 'center',
     alignItems: 'center',
     borderWidth: 3,
@@ -153,87 +134,28 @@ const styles = StyleSheet.create({
     shadowRadius: 8,
     elevation: 8,
   },
-  glassesModel: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'center',
-    width: 150,
-    height: 75,
-    position: 'relative',
-  },
-  lens: {
-    width: 42,
-    height: 42,
-    borderRadius: 21,
-    backgroundColor: 'rgba(0, 0, 0, 0.7)',
-    borderWidth: 3,
-    borderColor: '#E5E7EB',
-    position: 'relative',
-    marginHorizontal: 4,
-    shadowColor: '#000',
-    shadowOffset: { width: 0, height: 3 },
-    shadowOpacity: 0.4,
-    shadowRadius: 6,
-    elevation: 6,
-  },
-  lensInner: {
-    position: 'absolute',
-    top: 3,
-    left: 3,
-    width: 30,
-    height: 30,
-    borderRadius: 15,
-    backgroundColor: 'rgba(0, 0, 0, 0.3)',
-  },
-  lensReflection: {
-    position: 'absolute',
-    top: 6,
-    left: 9,
-    width: 12,
-    height: 12,
-    borderRadius: 6,
-    backgroundColor: 'rgba(255, 255, 255, 0.4)',
-  },
-  bridge: {
-    width: 18,
-    height: 4,
-    backgroundColor: '#E5E7EB',
-    borderRadius: 3,
-    marginHorizontal: -4,
-    zIndex: 1,
-  },
-  temple: {
-    position: 'absolute',
-    width: 30,
-    height: 3,
-    backgroundColor: '#E5E7EB',
-    borderRadius: 2,
-    top: 18,
-  },
-  templeLeft: {
-    right: 98,
-    transform: [{ rotate: '-15deg' }],
-  },
-  templeRight: {
-    left: 98,
-    transform: [{ rotate: '15deg' }],
+  glassesMockup: {
+    width: 160,
+    height: 100,
+    maxWidth: '95%',
+    maxHeight: '90%',
   },
   specificationsTitle: {
     fontSize: 24,
     fontWeight: 'bold',
     color: '#fff',
-    marginBottom: 35,
-    marginLeft: 15,
+    marginBottom: 30,
+    marginLeft: 10,
   },
   specsGrid: { 
     flexDirection: 'row', 
     justifyContent: 'space-between',
-    paddingHorizontal: 15,
-    marginBottom: 35,
+    paddingHorizontal: 10,
+    marginBottom: 25,
   },
   batteryContainer: { 
     alignItems: 'center',
-    marginRight: 20,
+    marginRight: 16,
   },
   battery: {
     width: 110,
@@ -282,7 +204,7 @@ const styles = StyleSheet.create({
   },
   specsColumn: { 
     justifyContent: 'space-between',
-    marginHorizontal: 12,
+    marginHorizontal: 8,
   },
   specItem: {
     width: 110,
