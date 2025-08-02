@@ -1,9 +1,12 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 // Import icons including Glasses for Device tab
 import { Home, Image as ImageIcon, Glasses, Wallet, User } from 'lucide-react-native';
 import { View, Text, StyleSheet } from 'react-native';
+
+// Import splash screen
+import SplashScreen from './components/SplashScreen';
 
 // Import your screen components
 import HomeScreen from './screens/HomeScreen';
@@ -16,6 +19,16 @@ import WalletScreen from './screens/WalletScreen';
 const Tab = createBottomTabNavigator();
 
 const App = () => {
+  const [showSplash, setShowSplash] = useState(true);
+
+  const handleSplashComplete = () => {
+    setShowSplash(false);
+  };
+
+  if (showSplash) {
+    return <SplashScreen onAnimationComplete={handleSplashComplete} />;
+  }
+
   return (
     // NavigationContainer is the root of all navigation logic
     <NavigationContainer>
