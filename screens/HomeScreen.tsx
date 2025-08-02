@@ -62,7 +62,7 @@ const HomeScreen = () => {
             </View>
             <View style={styles.specsColumn}>
               <SpecItem icon={<Video color="#fff" />} title="Video" subtitle="4k-60Fps" color="rgba(255,255,255,0.15)" />
-              <SpecItem icon={<Mic color="#fff" />} title="Tap to Mute" subtitle="ON" color="rgba(255,255,255,0.15)" />
+              <SpecItem icon={<Mic color="#fff" />} title="Mute" subtitle="ON" color="rgba(255,255,255,0.15)" />
             </View>
             <View style={styles.specsColumn}>
               <SpecItem icon={<SlidersHorizontal color="#fff" />} title="Control" subtitle="Control" color="rgba(255,255,255,0.15)" />
@@ -135,10 +135,10 @@ const styles = StyleSheet.create({
     elevation: 8,
   },
   glassesMockup: {
-    width: 160,
-    height: 100,
-    maxWidth: '95%',
-    maxHeight: '90%',
+    width: 280,
+    height: 200,
+    maxWidth: '100%',
+    maxHeight: '95%',
   },
   specificationsTitle: {
     fontSize: 24,
