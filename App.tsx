@@ -7,15 +7,13 @@ import { View, Text, StyleSheet } from 'react-native';
 
 // Import your screen components
 import HomeScreen from './screens/HomeScreen';
+import GalleryScreen from './screens/GalleryScreen';
 import ProfileScreen from './screens/ProfileScreen';
 import SettingsScreen from './screens/SettingsScreen';
 import WalletScreen from './screens/WalletScreen';
 
 // Create a bottom tab navigator instance
 const Tab = createBottomTabNavigator();
-
-// Placeholder screen for Gallery
-const GalleryScreen = () => <View style={styles.container}><Text style={styles.placeholderText}>Gallery Screen</Text></View>;
 
 const App = () => {
   return (
@@ -77,16 +75,6 @@ const App = () => {
 };
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#0f0c29',
-  },
-  placeholderText: {
-    color: 'white',
-    fontSize: 20,
-  },
   tabIconContainer: {
     alignItems: 'center',
     justifyContent: 'center',
