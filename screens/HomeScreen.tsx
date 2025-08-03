@@ -33,7 +33,7 @@ const HomeScreen = () => {
               <Text style={styles.subGreeting}>Welcome to Solana glasses</Text>
             </View>
             <Image
-              source={{ uri: 'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Screenshot%202025-07-26%20at%208.28.26%E2%80%AFPM-rCIFYaYXyawjOXA9LhSTY4oQo0yQoY.png' }}
+              source={{ uri: 'https://i.pravatar.cc/150?u=a042581f4e29026704d' }}
               style={styles.avatar}
             />
           </View>
@@ -79,7 +79,6 @@ const styles = StyleSheet.create({
   container: { flex: 1 },
   safeArea: { 
     flex: 1, 
-    paddingHorizontal: 32,
     paddingTop: 15,
   },
   scrollContent: {
@@ -92,9 +91,9 @@ const styles = StyleSheet.create({
     marginTop: 25,
     marginBottom: 15,
     backgroundColor: 'rgba(255, 255, 255, 0.15)',
-    padding: 28,
+    padding: 16,
+    marginHorizontal: 12,
     borderRadius: 24,
-    marginHorizontal: 6,
   },
   greeting: { 
     fontSize: 28, 
@@ -116,7 +115,7 @@ const styles = StyleSheet.create({
   },
   glassesContainer: { 
     alignItems: 'center', 
-    marginVertical: 45,
+    marginVertical: 25,
     paddingHorizontal: 25,
   },
   glassesPlaceholder: {
@@ -155,7 +154,7 @@ const styles = StyleSheet.create({
   },
   batteryContainer: { 
     alignItems: 'center',
-    marginRight: 16,
+    margin: 8,
   },
   battery: {
     width: 110,
@@ -204,7 +203,7 @@ const styles = StyleSheet.create({
   },
   specsColumn: { 
     justifyContent: 'space-between',
-    marginHorizontal: 8,
+    marginHorizontal: 4,
   },
   specItem: {
     width: 110,

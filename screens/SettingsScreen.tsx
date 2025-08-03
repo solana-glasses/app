@@ -39,7 +39,7 @@ const SettingsScreen = () => {
           <View style={styles.header}>
             <Text style={styles.headerTitle}>Profile</Text>
             <Image
-              source={{ uri: 'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Screenshot%202025-07-26%20at%208.28.46%E2%80%AFPM-iRn11kRFToCQ6o8ATGXvQlcaKTOxyp.png' }}
+              source={{ uri: 'https://i.pravatar.cc/150?u=a042581f4e29026704d' }}
               style={styles.avatar}
             />
           </View>

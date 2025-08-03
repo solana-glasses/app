@@ -1,7 +1,6 @@
 import React from 'react';
 import { View, Text, StyleSheet, Image, SafeAreaView, ScrollView, TouchableOpacity } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
-import { Wallet as WalletIcon } from 'lucide-react-native';
 
 // Mock data for the transaction list
 const transactions = [
@@ -95,7 +94,7 @@ const WalletScreen = () => {
           </View>
 
           <Image
-            source={{ uri: 'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Screenshot%202025-07-30%20at%201.07.40%E2%80%AFAM-b6NikF4K6z8WmnY4H8SBEnwVwYmXP7.png' }}
+            source={require('../assets/glass-preview.png')}
             style={styles.glassesImage}
             resizeMode="cover"
           />
@@ -124,7 +123,7 @@ const styles = StyleSheet.create({
   },
   safeArea: { 
     flex: 1, 
-    paddingHorizontal: 32,
+    marginHorizontal: 12,
     paddingTop: 15,
   },
   scrollContent: {
@@ -140,7 +139,7 @@ const styles = StyleSheet.create({
     backgroundColor: 'rgba(255, 255, 255, 0.15)',
     padding: 28,
     borderRadius: 24,
-    marginHorizontal: 6,
+    marginHorizontal: 0,
   },
   greeting: { 
     fontSize: 28, 
@@ -166,7 +165,7 @@ const styles = StyleSheet.create({
     backgroundColor: 'rgba(255, 255, 255, 0.1)',
     borderRadius: 24,
     padding: 28,
-    marginHorizontal: 6,
+    marginHorizontal: 0,
   },
   balanceLabel: {
     fontSize: 20,
@@ -185,7 +184,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#374151',
     borderRadius: 18,
     justifyContent: 'center',
-    paddingHorizontal: 6,
+    paddingHorizontal: 0,
     marginTop: 8,
   },
   toggleThumb: {
@@ -199,7 +198,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     marginVertical: 25,
-    paddingHorizontal: 6,
+    paddingHorizontal: 0,
   },
   depositButton: {
     backgroundColor: '#374151',
@@ -246,14 +245,14 @@ const styles = StyleSheet.create({
     height: 160,
     borderRadius: 20,
     marginVertical: 30,
-    marginHorizontal: 6,
+    marginHorizontal: 0,
   },
   transactionsHeader: {
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
     marginBottom: 20,
-    paddingHorizontal: 6,
+    paddingHorizontal: 0,
   },
   transactionsTitle: {
     fontSize: 24,
@@ -267,7 +266,7 @@ const styles = StyleSheet.create({
   },
   transactionsList: {
     marginBottom: 20,
-    paddingHorizontal: 6,
+    paddingHorizontal: 0,
   },
   transactionItem: {
     flexDirection: 'row',

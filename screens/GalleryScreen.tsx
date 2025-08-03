@@ -91,8 +91,9 @@ const styles = StyleSheet.create({
   },
   safeArea: {
     flex: 1,
-    paddingHorizontal: 20,
+    paddingHorizontal: 48,
     paddingTop: 15,
+    marginHorizontal: 12,
   },
   header: {
     flexDirection: 'row',
@@ -126,7 +127,7 @@ const styles = StyleSheet.create({
     justifyContent: 'space-around',
     backgroundColor: 'rgba(255, 255, 255, 0.15)',
     borderRadius: 20,
-    padding: 20,
+    padding: 12,
     marginBottom: 25,
   },
   statItem: {
