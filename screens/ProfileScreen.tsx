@@ -24,14 +24,22 @@ const ProfileItem = ({ icon, title, subtitle, onPress, showChevron = true }: Pro
   </TouchableOpacity>
 );
 
-const ProfileScreen = () => {
+interface ProfileScreenProps {
+  onLogout: () => void;
+}
+
+const ProfileScreen = ({ onLogout }: ProfileScreenProps) => {
   const handleMenuPress = (item: string) => {
-    console.log(`${item} pressed`);
-    // Handle navigation or actions here
+    if (item === 'Logout') {
+      onLogout();
+    } else {
+      console.log(`${item} pressed`);
+      // Handle other navigation or actions here
+    }
   };
 
   return (
-    <LinearGradient colors={['#6B7280', '#4B5563']} style={styles.container}>
+    <LinearGradient colors={['#8BEDDE', '#D6EFFF']} start={{x: 0, y: 0}} end={{x: 1, y: 0}} style={styles.container}>
       <SafeAreaView style={styles.safeArea}>
         <ScrollView showsVerticalScrollIndicator={false} contentContainerStyle={styles.scrollContent}>
           {/* Header */}
@@ -41,7 +49,7 @@ const ProfileScreen = () => {
               <Text style={styles.subGreeting}>Manage your account</Text>
             </View>
             <TouchableOpacity style={styles.settingsButton}>
-              <Settings color="#fff" size={24} />
+              <Settings color="#01031A" size={24} />
             </TouchableOpacity>
           </View>
 
@@ -66,19 +74,19 @@ const ProfileScreen = () => {
             <Text style={styles.sectionTitle}>Account</Text>
             <View style={styles.menuContainer}>
               <ProfileItem 
-                icon={<User color="#fff" />} 
+                icon={<User color="#01031A" />} 
                 title="Personal Information" 
                 subtitle="Update your details"
                 onPress={() => handleMenuPress('Personal Info')}
               />
               <ProfileItem 
-                icon={<Bell color="#fff" />} 
+                icon={<Bell color="#01031A" />} 
                 title="Notifications" 
                 subtitle="Manage alerts"
                 onPress={() => handleMenuPress('Notifications')}
               />
               <ProfileItem 
-                icon={<Cloud color="#fff" />} 
+                icon={<Cloud color="#01031A" />} 
                 title="Cloud Storage" 
                 subtitle="2.1 GB used"
                 onPress={() => handleMenuPress('Cloud Storage')}
@@ -91,19 +99,19 @@ const ProfileScreen = () => {
             <Text style={styles.sectionTitle}>Device</Text>
             <View style={styles.menuContainer}>
               <ProfileItem 
-                icon={<Smartphone color="#fff" />} 
+                icon={<Smartphone color="#01031A" />} 
                 title="Smart Glasses" 
                 subtitle="Connected • 72% battery"
                 onPress={() => handleMenuPress('Devices')}
               />
               <ProfileItem 
-                icon={<SlidersHorizontal color="#fff" />} 
+                icon={<SlidersHorizontal color="#01031A" />} 
                 title="Device Control" 
                 subtitle="Manage settings"
                 onPress={() => handleMenuPress('Control')}
               />
               <ProfileItem 
-                icon={<RefreshCw color="#fff" />} 
+                icon={<RefreshCw color="#01031A" />} 
                 title="Sync Data" 
                 subtitle="Last synced 2 min ago"
                 onPress={() => handleMenuPress('Sync')}
@@ -116,7 +124,7 @@ const ProfileScreen = () => {
             <Text style={styles.sectionTitle}>More</Text>
             <View style={styles.menuContainer}>
               <ProfileItem 
-                icon={<Film color="#fff" />} 
+                icon={<Film color="#01031A" />} 
                 title="Gallery Backup" 
                 subtitle="Auto-backup enabled"
                 onPress={() => handleMenuPress('Gallery')}
@@ -154,19 +162,21 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     marginTop: 25,
     marginBottom: 25,
-    backgroundColor: 'rgba(255, 255, 255, 0.15)',
+    backgroundColor: 'rgba(255, 255, 255, 0.3)',
     padding: 28,
     borderRadius: 24,
+    borderWidth: 1,
+    borderColor: 'rgba(1, 3, 26, 0.2)',
   },
   greeting: { 
     fontSize: 28, 
     fontWeight: 'bold', 
-    color: '#fff',
+    color: '#01031A',
     marginBottom: 6,
   },
   subGreeting: { 
     fontSize: 16, 
-    color: '#E5E7EB',
+    color: '#01031A',
     lineHeight: 22,
   },
   settingsButton: {
@@ -176,23 +186,25 @@ const styles = StyleSheet.create({
     backgroundColor: 'rgba(255, 255, 255, 0.2)',
     justifyContent: 'center',
     alignItems: 'center',
+    borderWidth: 1,
+    borderColor: 'rgba(1, 3, 26, 0.2)',
   },
   profileCard: {
     flexDirection: 'row',
-    backgroundColor: 'rgba(255, 255, 255, 0.15)',
+    backgroundColor: 'rgba(255, 255, 255, 0.3)',
     borderRadius: 24,
     padding: 24,
     marginBottom: 30,
     alignItems: 'center',
-    borderWidth: 2,
-    borderColor: 'rgba(255, 255, 255, 0.25)',
+    borderWidth: 1,
+    borderColor: 'rgba(1, 3, 26, 0.2)',
   },
   avatar: {
     width: 80,
     height: 80,
     borderRadius: 40,
-    borderWidth: 3,
-    borderColor: 'rgba(255, 255, 255, 0.3)',
+    borderWidth: 2,
+    borderColor: 'rgba(1, 3, 26, 0.3)',
     marginRight: 20,
   },
   userInfo: {
@@ -201,12 +213,12 @@ const styles = StyleSheet.create({
   userName: { 
     fontSize: 22, 
     fontWeight: 'bold', 
-    color: '#fff',
+    color: '#01031A',
     marginBottom: 4,
   },
   userEmail: { 
     fontSize: 16, 
-    color: '#E5E7EB',
+    color: '#01031A',
     marginBottom: 8,
   },
   statusContainer: {
@@ -217,12 +229,12 @@ const styles = StyleSheet.create({
     width: 8,
     height: 8,
     borderRadius: 4,
-    backgroundColor: '#10B981',
+    backgroundColor: 'rgba(1, 3, 26, 0.8)',
     marginRight: 6,
   },
   statusText: {
     fontSize: 14,
-    color: '#D1D5DB',
+    color: '#01031A',
   },
   section: {
     marginBottom: 25,
@@ -230,15 +242,15 @@ const styles = StyleSheet.create({
   sectionTitle: {
     fontSize: 20,
     fontWeight: 'bold',
-    color: '#fff',
+    color: '#01031A',
     marginBottom: 15,
   },
   menuContainer: {
-    backgroundColor: 'rgba(255, 255, 255, 0.15)',
+    backgroundColor: 'rgba(255, 255, 255, 0.3)',
     borderRadius: 20,
     padding: 8,
-    borderWidth: 2,
-    borderColor: 'rgba(255, 255, 255, 0.25)',
+    borderWidth: 1,
+    borderColor: 'rgba(1, 3, 26, 0.2)',
   },
   menuItem: {
     flexDirection: 'row',
@@ -258,6 +270,8 @@ const styles = StyleSheet.create({
     padding: 12,
     borderRadius: 12,
     marginRight: 16,
+    borderWidth: 1,
+    borderColor: 'rgba(1, 3, 26, 0.2)',
   },
   menuItemContent: {
     flex: 1,
@@ -265,12 +279,12 @@ const styles = StyleSheet.create({
   menuItemTitle: {
     fontSize: 16,
     fontWeight: '600',
-    color: '#fff',
+    color: '#01031A',
     marginBottom: 2,
   },
   menuItemSubtitle: {
     fontSize: 14,
-    color: '#D1D5DB',
+    color: '#01031A',
   },
 });
 

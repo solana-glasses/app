@@ -1,41 +1,70 @@
-import React from 'react';
-import { View, Text, StyleSheet, Image, SafeAreaView, ScrollView } from 'react-native';
+import React, { useState } from 'react';
+import { View, Text, StyleSheet, Image, SafeAreaView, ScrollView, TouchableOpacity } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
-import { Video, SlidersHorizontal, Mic, Wifi } from 'lucide-react-native';
+import { Video, SlidersHorizontal, Mic, MicOff, Wifi, WifiOff, Search } from 'lucide-react-native';
 
 interface SpecItemProps {
   icon: React.ReactNode;
   title: string;
   subtitle: string;
   color: string;
+  onPress?: () => void;
+  isActive?: boolean;
 }
 
-const SpecItem = ({ icon, title, subtitle, color }: SpecItemProps) => (
-  <View style={styles.specItem}>
+const SpecItem = ({ icon, title, subtitle, color, onPress, isActive }: SpecItemProps) => (
+  <TouchableOpacity 
+    style={[
+      styles.specItem, 
+      isActive && styles.specItemActive
+    ]} 
+    onPress={onPress}
+    activeOpacity={0.7}
+  >
     <View style={[styles.specIconContainer, { backgroundColor: color }]}>
       {icon}
     </View>
-    <Text style={styles.specTitle}>{title}</Text>
-    <Text style={styles.specSubtitle}>{subtitle}</Text>
-  </View>
+    <Text style={[styles.specTitle, isActive && styles.specTitleActive]}>{title}</Text>
+    <Text style={[styles.specSubtitle, isActive && styles.specSubtitleActive]}>{subtitle}</Text>
+  </TouchableOpacity>
 );
 
 
 
 const HomeScreen = () => {
+  const [isMuted, setIsMuted] = useState(false);
+  const [isConnected, setIsConnected] = useState(true);
+  const [recordingMode, setRecordingMode] = useState('4k-60Fps');
+  const [controlMode, setControlMode] = useState('Auto');
+
+  const toggleMute = () => {
+    setIsMuted(!isMuted);
+  };
+
+  const toggleConnection = () => {
+    setIsConnected(!isConnected);
+  };
+
+  const toggleRecording = () => {
+    setRecordingMode(recordingMode === '4k-60Fps' ? '1080p-30Fps' : '4k-60Fps');
+  };
+
+  const toggleControl = () => {
+    setControlMode(controlMode === 'Auto' ? 'Manual' : 'Auto');
+  };
+
   return (
-    <LinearGradient colors={['#6B7280', '#4B5563']} style={styles.container}>
+    <LinearGradient colors={['#8BEDDE', '#D6EFFF']} start={{x: 0, y: 0}} end={{x: 1, y: 0}} style={styles.container}>
       <SafeAreaView style={styles.safeArea}>
         <ScrollView showsVerticalScrollIndicator={false} contentContainerStyle={styles.scrollContent}>
           <View style={styles.header}>
-            <View>
-              <Text style={styles.greeting}>Good Morning</Text>
-              <Text style={styles.subGreeting}>Welcome to Solana glasses</Text>
-            </View>
             <Image
               source={{ uri: 'https://i.pravatar.cc/150?u=a042581f4e29026704d' }}
-              style={styles.avatar}
+              style={styles.profilePicture}
             />
+            <View style={styles.searchContainer}>
+              <Search color="#01031A" size={20} />
+            </View>
           </View>
 
           <View style={styles.glassesContainer}>
@@ -61,12 +90,40 @@ const HomeScreen = () => {
               <Text style={styles.batteryLabel}>Glass Battery</Text>
             </View>
             <View style={styles.specsColumn}>
-              <SpecItem icon={<Video color="#fff" />} title="Video" subtitle="4k-60Fps" color="rgba(255,255,255,0.15)" />
-              <SpecItem icon={<Mic color="#fff" />} title="Mute" subtitle="ON" color="rgba(255,255,255,0.15)" />
+              <SpecItem 
+                icon={<Video color="#01031A" />} 
+                title="Video" 
+                subtitle={recordingMode} 
+                color="transparent" 
+                onPress={toggleRecording}
+                isActive={recordingMode === '4k-60Fps'}
+              />
+              <SpecItem 
+                icon={isMuted ? <MicOff color="#01031A" /> : <Mic color="#01031A" />} 
+                title="Mute" 
+                subtitle={isMuted ? "OFF" : "ON"} 
+                color="transparent" 
+                onPress={toggleMute}
+                isActive={!isMuted}
+              />
             </View>
             <View style={styles.specsColumn}>
-              <SpecItem icon={<SlidersHorizontal color="#fff" />} title="Control" subtitle="Control" color="rgba(255,255,255,0.15)" />
-              <SpecItem icon={<Wifi color="#fff" />} title="User" subtitle="Connected" color="rgba(255,255,255,0.15)" />
+              <SpecItem 
+                icon={<SlidersHorizontal color="#01031A" />} 
+                title="Control" 
+                subtitle={controlMode} 
+                color="transparent" 
+                onPress={toggleControl}
+                isActive={controlMode === 'Auto'}
+              />
+              <SpecItem 
+                icon={isConnected ? <Wifi color="#01031A" /> : <WifiOff color="#01031A" />} 
+                title="User" 
+                subtitle={isConnected ? "Connected" : "Disconnected"} 
+                color="transparent" 
+                onPress={toggleConnection}
+                isActive={isConnected}
+              />
             </View>
           </View>
         </ScrollView>
@@ -78,7 +135,8 @@ const HomeScreen = () => {
 const styles = StyleSheet.create({
   container: { flex: 1 },
   safeArea: { 
-    flex: 1, 
+    flex: 1,
+    paddingHorizontal: 32,
     paddingTop: 15,
   },
   scrollContent: {
@@ -86,63 +144,50 @@ const styles = StyleSheet.create({
   },
   header: {
     flexDirection: 'row',
-    justifyContent: 'space-between',
     alignItems: 'center',
     marginTop: 25,
-    marginBottom: 15,
-    backgroundColor: 'rgba(255, 255, 255, 0.15)',
-    padding: 16,
-    marginHorizontal: 12,
-    borderRadius: 24,
+    marginBottom: 30,
+    marginHorizontal: 16,
   },
-  greeting: { 
-    fontSize: 28, 
-    fontWeight: 'bold', 
-    color: '#fff',
-    marginBottom: 6,
+  profilePicture: { 
+    width: 56, 
+    height: 56, 
+    borderRadius: 28,
+    borderWidth: 2,
+    borderColor: 'rgba(1, 3, 26, 0.2)',
   },
-  subGreeting: { 
-    fontSize: 16, 
-    color: '#E5E7EB',
-    lineHeight: 22,
-  },
-  avatar: { 
-    width: 64, 
-    height: 64, 
-    borderRadius: 32,
-    borderWidth: 3,
-    borderColor: 'rgba(255, 255, 255, 0.3)',
+  searchContainer: {
+    flex: 1,
+    backgroundColor: 'rgba(255, 255, 255, 0.2)',
+    borderRadius: 20,
+    paddingHorizontal: 16,
+    paddingVertical: 12,
+    borderWidth: 1,
+    borderColor: 'rgba(1, 3, 26, 0.2)',
+    marginLeft: 16,
+    justifyContent: 'center',
+    alignItems: 'flex-end',
   },
   glassesContainer: { 
     alignItems: 'center', 
     marginVertical: 25,
-    paddingHorizontal: 25,
+    paddingHorizontal: 0,
   },
   glassesPlaceholder: {
-    width: '90%',
-    height: 140,
-    backgroundColor: 'rgba(255, 255, 255, 0.15)',
-    borderRadius: 60,
+    width: '100%',
+    height: 200,
     justifyContent: 'center',
     alignItems: 'center',
-    borderWidth: 3,
-    borderColor: 'rgba(255, 255, 255, 0.25)',
-    shadowColor: '#000',
-    shadowOffset: { width: 0, height: 4 },
-    shadowOpacity: 0.3,
-    shadowRadius: 8,
-    elevation: 8,
   },
   glassesMockup: {
-    width: 280,
+    width: '100%',
     height: 200,
-    maxWidth: '100%',
-    maxHeight: '95%',
+    resizeMode: 'contain',
   },
   specificationsTitle: {
     fontSize: 24,
     fontWeight: 'bold',
-    color: '#fff',
+    color: '#01031A',
     marginBottom: 30,
     marginLeft: 10,
   },
@@ -159,43 +204,38 @@ const styles = StyleSheet.create({
   battery: {
     width: 110,
     height: 160,
-    backgroundColor: 'rgba(255,255,255,0.15)',
+    backgroundColor: 'rgba(255, 255, 255, 0.3)',
     borderRadius: 24,
     justifyContent: 'flex-end',
     alignItems: 'center',
     overflow: 'hidden',
     paddingBottom: 24,
-    borderWidth: 2,
-    borderColor: 'rgba(255, 255, 255, 0.25)',
-    shadowColor: '#000',
-    shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.2,
-    shadowRadius: 4,
-    elevation: 4,
+    borderWidth: 1,
+    borderColor: 'rgba(1, 3, 26, 0.2)',
   },
   batteryLevel: {
     position: 'absolute',
     bottom: 0,
     width: '100%',
     height: '72%',
-    backgroundColor: '#60A5FA',
+    backgroundColor: '#7AFFA1',
     borderBottomLeftRadius: 22,
     borderBottomRightRadius: 22,
   },
   batteryText: { 
     fontSize: 26, 
     fontWeight: 'bold', 
-    color: '#fff', 
+    color: '#01031A', 
     zIndex: 1,
     marginBottom: 4,
   },
   batterySubtext: { 
     fontSize: 14, 
-    color: '#fff', 
+    color: '#01031A', 
     zIndex: 1,
   },
   batteryLabel: { 
-    color: '#fff', 
+    color: '#01031A', 
     marginTop: 16,
     fontSize: 15,
     textAlign: 'center',
@@ -208,37 +248,43 @@ const styles = StyleSheet.create({
   specItem: {
     width: 110,
     height: 110,
-    backgroundColor: 'rgba(255,255,255,0.15)',
+    backgroundColor: 'rgba(255, 255, 255, 0.3)',
     borderRadius: 24,
     justifyContent: 'center',
     alignItems: 'center',
     padding: 14,
     marginBottom: 18,
+    borderWidth: 1,
+    borderColor: 'rgba(1, 3, 26, 0.2)',
+  },
+  specItemActive: {
+    backgroundColor: 'rgba(255, 255, 255, 0.4)',
+    borderColor: '#01031A',
     borderWidth: 2,
-    borderColor: 'rgba(255, 255, 255, 0.25)',
-    shadowColor: '#000',
-    shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.2,
-    shadowRadius: 4,
-    elevation: 4,
+    transform: [{ scale: 0.98 }],
   },
   specIconContainer: {
-    padding: 10,
-    borderRadius: 12,
     marginBottom: 10,
   },
   specTitle: { 
-    color: '#fff', 
+    color: '#01031A', 
     fontWeight: 'bold', 
     fontSize: 13, 
     textAlign: 'center',
     marginBottom: 3,
   },
+  specTitleActive: {
+    color: '#01031A',
+  },
   specSubtitle: { 
-    color: '#D1D5DB', 
+    color: '#01031A', 
     fontSize: 11, 
     textAlign: 'center',
     lineHeight: 14,
+  },
+  specSubtitleActive: {
+    color: '#01031A',
+    fontWeight: '600',
   },
 });
 

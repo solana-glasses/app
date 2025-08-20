@@ -33,11 +33,11 @@ const SettingsScreen = () => {
   };
 
   return (
-    <LinearGradient colors={['#4e4376', '#2b2d42']} style={styles.container}>
-      <SafeAreaView style={{ flex: 1 }}>
-        <ScrollView showsVerticalScrollIndicator={false}>
+    <LinearGradient colors={['#8BEDDE', '#D6EFFF']} start={{x: 0, y: 0}} end={{x: 1, y: 0}} style={styles.container}>
+      <SafeAreaView style={styles.safeArea}>
+        <ScrollView showsVerticalScrollIndicator={false} contentContainerStyle={styles.scrollContent}>
           <View style={styles.header}>
-            <Text style={styles.headerTitle}>Profile</Text>
+            <Text style={styles.headerTitle}>Settings</Text>
             <Image
               source={{ uri: 'https://i.pravatar.cc/150?u=a042581f4e29026704d' }}
               style={styles.avatar}
@@ -78,21 +78,21 @@ const SettingsScreen = () => {
               </View>
               <View style={styles.switchRow}>
                 <Text style={styles.switchLabel}>Lens Correction</Text>
-                <Switch
-                  value={settings.lensCorrection}
-                  onValueChange={val => updateSetting('lensCorrection', val)}
-                  trackColor={{ false: '#767577', true: '#81b0ff' }}
-                  thumbColor={settings.lensCorrection ? '#f4f3f4' : '#f4f3f4'}
-                />
+                                  <Switch
+                    value={settings.lensCorrection}
+                    onValueChange={val => updateSetting('lensCorrection', val)}
+                    trackColor={{ false: 'rgba(1, 3, 26, 0.2)', true: 'rgba(1, 3, 26, 0.8)' }}
+                    thumbColor={settings.lensCorrection ? '#FFFFFF' : '#FFFFFF'}
+                  />
               </View>
               <View style={styles.switchRow}>
                 <Text style={styles.switchLabel}>Prioritize Faster Shooting</Text>
-                <Switch
-                  value={settings.prioritizeShooting}
-                  onValueChange={val => updateSetting('prioritizeShooting', val)}
-                  trackColor={{ false: '#767577', true: '#81b0ff' }}
-                  thumbColor={settings.prioritizeShooting ? '#f4f3f4' : '#f4f3f4'}
-                />
+                                  <Switch
+                    value={settings.prioritizeShooting}
+                    onValueChange={val => updateSetting('prioritizeShooting', val)}
+                    trackColor={{ false: 'rgba(1, 3, 26, 0.2)', true: 'rgba(1, 3, 26, 0.8)' }}
+                    thumbColor={settings.prioritizeShooting ? '#FFFFFF' : '#FFFFFF'}
+                  />
               </View>
             </View>
 
@@ -101,7 +101,7 @@ const SettingsScreen = () => {
               {VIDEO_SETTINGS.map(setting => (
                 <TouchableOpacity key={setting} style={styles.videoOption} onPress={() => updateSetting('videoSetting', setting)}>
                   <Text style={styles.videoOptionText}>{setting}</Text>
-                  {settings.videoSetting === setting && <Check color="#34C759" size={20} />}
+                  {settings.videoSetting === setting && <Check color="rgba(1, 3, 26, 0.8)" size={20} />}
                 </TouchableOpacity>
               ))}
             </View>
@@ -114,39 +114,98 @@ const SettingsScreen = () => {
 
 const styles = StyleSheet.create({
   container: { flex: 1 },
-  header: { alignItems: 'center', paddingVertical: 20 },
-  headerTitle: { fontSize: 24, fontWeight: 'bold', color: '#fff', marginBottom: 15 },
-  avatar: { width: 100, height: 100, borderRadius: 50 },
-  contentContainer: {
-    backgroundColor: '#eef2f9',
-    borderTopLeftRadius: 30,
-    borderTopRightRadius: 30,
-    padding: 25,
-    marginTop: 20,
+  safeArea: { flex: 1 },
+  scrollContent: { flexGrow: 1 },
+  header: { 
+    alignItems: 'center', 
+    paddingVertical: 20,
+    paddingHorizontal: 32,
+    marginTop: 15,
+    marginBottom: 10,
   },
-  sectionHeader: { flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', marginBottom: 20 },
-  sectionTitle: { fontSize: 26, fontWeight: 'bold', color: '#333' },
-  resetButton: { backgroundColor: '#d1d8e0', paddingVertical: 10, paddingHorizontal: 15, borderRadius: 20 },
-  resetButtonText: { color: '#333', fontWeight: '500' },
-  card: { backgroundColor: '#fff', borderRadius: 20, padding: 20, marginBottom: 20 },
-  cardTitle: { fontSize: 20, fontWeight: 'bold', color: '#333', marginBottom: 20 },
-  toggleGroup: { flexDirection: 'row', backgroundColor: '#f0f0f0', borderRadius: 20, padding: 4 },
-  toggleButton: { flex: 1, paddingVertical: 12, borderRadius: 18, alignItems: 'center' },
-  toggleButtonActive: { backgroundColor: '#000' },
-  toggleButtonText: { color: '#333', fontWeight: '600' },
-  toggleButtonTextActive: { color: '#fff' },
+  headerTitle: { fontSize: 24, fontWeight: 'bold', color: '#01031A', marginBottom: 15 },
+  avatar: { 
+    width: 100, 
+    height: 100, 
+    borderRadius: 50,
+    borderWidth: 2,
+    borderColor: 'rgba(1, 3, 26, 0.2)',
+  },
+  contentContainer: {
+    paddingHorizontal: 32,
+    paddingVertical: 0,
+  },
+  sectionHeader: { 
+    flexDirection: 'row', 
+    justifyContent: 'space-between', 
+    alignItems: 'center', 
+    marginBottom: 20,
+    backgroundColor: 'rgba(255, 255, 255, 0.3)',
+    padding: 20,
+    borderRadius: 20,
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.05,
+    shadowRadius: 8,
+    elevation: 4,
+  },
+  sectionTitle: { fontSize: 20, fontWeight: 'bold', color: '#01031A' },
+  resetButton: { 
+    backgroundColor: 'rgba(255, 255, 255, 0.2)', 
+    paddingVertical: 10, 
+    paddingHorizontal: 15, 
+    borderRadius: 16,
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 1 },
+    shadowOpacity: 0.05,
+    shadowRadius: 4,
+    elevation: 2,
+  },
+  resetButtonText: { color: '#01031A', fontWeight: '500' },
+  card: { 
+    backgroundColor: 'rgba(255, 255, 255, 0.3)', 
+    borderRadius: 20, 
+    padding: 20, 
+    marginBottom: 20,
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.05,
+    shadowRadius: 8,
+    elevation: 4,
+  },
+  cardTitle: { fontSize: 18, fontWeight: 'bold', color: '#01031A', marginBottom: 20 },
+  toggleGroup: { 
+    flexDirection: 'row', 
+    backgroundColor: 'rgba(255, 255, 255, 0.2)', 
+    borderRadius: 20, 
+    padding: 4,
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 1 },
+    shadowOpacity: 0.03,
+    shadowRadius: 3,
+    elevation: 1,
+  },
+  toggleButton: { flex: 1, paddingVertical: 12, borderRadius: 16, alignItems: 'center' },
+  toggleButtonActive: { backgroundColor: 'rgba(1, 3, 26, 0.8)' },
+  toggleButtonText: { color: '#01031A', fontWeight: '600' },
+  toggleButtonTextActive: { color: '#FFFFFF' },
   efficiencyButton: { paddingVertical: 15 },
-  switchRow: { flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', marginTop: 25 },
-  switchLabel: { fontSize: 16, color: '#333' },
+  switchRow: { 
+    flexDirection: 'row', 
+    justifyContent: 'space-between', 
+    alignItems: 'center', 
+    marginTop: 25 
+  },
+  switchLabel: { fontSize: 16, color: '#01031A', fontWeight: '500' },
   videoOption: {
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
     paddingVertical: 15,
     borderBottomWidth: 1,
-    borderBottomColor: '#eee',
+    borderBottomColor: 'rgba(1, 3, 26, 0.1)',
   },
-  videoOptionText: { fontSize: 16, color: '#333' },
+  videoOptionText: { fontSize: 16, color: '#01031A' },
 });
 
 export default SettingsScreen;
