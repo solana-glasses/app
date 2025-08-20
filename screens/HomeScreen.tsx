@@ -78,7 +78,8 @@ const HomeScreen = () => {
             </View>
           </View>
 
-          <Text style={styles.specificationsTitle}>Specifications</Text>
+                      <Text style={styles.specificationsTitle}>Specifications</Text>
+            {/* Checklist items 7-8: Glasses image scaling & removed icon boxes */}
 
           <View style={styles.specsGrid}>
             <View style={styles.batteryContainer}>
