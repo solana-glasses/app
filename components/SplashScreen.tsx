@@ -40,8 +40,8 @@ const SplashScreen = ({ onAnimationComplete }: SplashScreenProps) => {
     <View style={styles.container}>
       <Animated.View style={[styles.content, { opacity: fadeAnim }]}>
         <Image
-          source={require('../assets/solana-glasses-splashscreen.gif')}
-          style={styles.splashGif}
+          source={require('../assets/sol-glass-mock.png')}
+          style={styles.logoImage}
           resizeMode="contain"
         />
       </Animated.View>
@@ -52,7 +52,7 @@ const SplashScreen = ({ onAnimationComplete }: SplashScreenProps) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#000000',
+    backgroundColor: '#FFFFFF',
     justifyContent: 'center',
     alignItems: 'center',
   },
@@ -63,11 +63,11 @@ const styles = StyleSheet.create({
     width: '100%',
     height: '100%',
   },
-  splashGif: {
-    width: width,
-    height: height,
-    maxWidth: '100%',
-    maxHeight: '100%',
+  logoImage: {
+    width: 200,
+    height: 150,
+    maxWidth: '80%',
+    maxHeight: '80%',
   },
 });
 
