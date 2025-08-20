@@ -5,8 +5,9 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { Home, Image as ImageIcon, Glasses, Wallet, User } from 'lucide-react-native';
 import { View, Text, StyleSheet } from 'react-native';
 
-// Import splash screen
+// Import splash screen and login screen
 import SplashScreen from './components/SplashScreen';
+import LoginScreen from './screens/LoginScreen';
 
 // Import your screen components
 import HomeScreen from './screens/HomeScreen';
@@ -20,13 +21,22 @@ const Tab = createBottomTabNavigator();
 
 const App = () => {
   const [showSplash, setShowSplash] = useState(true);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   const handleSplashComplete = () => {
     setShowSplash(false);
   };
 
+  const handleLogin = () => {
+    setIsLoggedIn(true);
+  };
+
   if (showSplash) {
     return <SplashScreen onAnimationComplete={handleSplashComplete} />;
+  }
+
+  if (!isLoggedIn) {
+    return <LoginScreen onLogin={handleLogin} />;
   }
 
   return (
@@ -60,19 +70,23 @@ const App = () => {
               </View>
             );
           },
-          // Styling for the tab bar
-          tabBarActiveTintColor: '#ffffff',
-          tabBarInactiveTintColor: '#aaaaaa',
+          // Styling for the tab bar (Checklist item #9: Dribbble-inspired design)
+          tabBarActiveTintColor: 'rgba(1, 3, 26, 0.9)',
+          tabBarInactiveTintColor: 'rgba(1, 3, 26, 0.5)',
           tabBarShowLabel: true,
           tabBarStyle: {
-            backgroundColor: '#1a1a2e', // Dark background for the tab bar
-            borderTopWidth: 0, // No top border
-            height: 90, // Custom height for the tab bar
-            paddingBottom: 30, // Padding to avoid home indicator on iOS
+            backgroundColor: 'rgba(255, 255, 255, 0.1)',
+            borderTopWidth: 1,
+            borderTopColor: 'rgba(1, 3, 26, 0.2)',
+            height: 85,
+            paddingBottom: 25,
+            paddingTop: 8,
+            paddingHorizontal: 10,
           },
           tabBarLabelStyle: {
-            fontSize: 12,
-            marginTop: 4,
+            fontSize: 11,
+            fontWeight: '500',
+            marginTop: 2,
           },
         })}
       >
@@ -81,7 +95,10 @@ const App = () => {
         <Tab.Screen name="Gallery" component={GalleryScreen} />
         <Tab.Screen name="Device" component={SettingsScreen} />
         <Tab.Screen name="Wallet" component={WalletScreen} />
-        <Tab.Screen name="Profile" component={ProfileScreen} />
+        <Tab.Screen 
+          name="Profile" 
+          children={() => <ProfileScreen onLogout={() => setIsLoggedIn(false)} />} 
+        />
       </Tab.Navigator>
     </NavigationContainer>
   );
@@ -91,14 +108,14 @@ const styles = StyleSheet.create({
   tabIconContainer: {
     alignItems: 'center',
     justifyContent: 'center',
-    top: 5, // Nudge icons up slightly
+    top: 2,
   },
   activeIndicator: {
-    height: 4,
-    width: 4,
-    borderRadius: 2,
-    backgroundColor: '#ffffff',
-    marginTop: 6,
+    height: 2,
+    width: 16,
+    borderRadius: 1,
+    backgroundColor: 'rgba(1, 3, 26, 0.9)',
+    marginTop: 4,
   },
 });
 

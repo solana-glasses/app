@@ -39,16 +39,16 @@ const GalleryScreen = () => {
   };
 
   return (
-    <LinearGradient colors={['#6B7280', '#4B5563']} style={styles.container}>
+    <LinearGradient colors={['#8BEDDE', '#D6EFFF']} start={{x: 0, y: 0}} end={{x: 1, y: 0}} style={styles.container}>
       <SafeAreaView style={styles.safeArea}>
         <View style={styles.header}>
           <Text style={styles.title}>Gallery</Text>
           <View style={styles.headerActions}>
             <TouchableOpacity style={styles.actionButton}>
-              <Download color="#fff" size={20} />
+              <Download color="#01031A" size={20} />
             </TouchableOpacity>
             <TouchableOpacity style={styles.actionButton}>
-              <Share2 color="#fff" size={20} />
+              <Share2 color="#01031A" size={20} />
             </TouchableOpacity>
           </View>
         </View>
@@ -101,14 +101,16 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     marginTop: 25,
     marginBottom: 25,
-    backgroundColor: 'rgba(255, 255, 255, 0.15)',
+    backgroundColor: 'rgba(255, 255, 255, 0.3)',
     padding: 20,
     borderRadius: 20,
+    borderWidth: 1,
+    borderColor: 'rgba(1, 3, 26, 0.2)',
   },
   title: {
     fontSize: 28,
     fontWeight: 'bold',
-    color: '#fff',
+    color: '#01031A',
   },
   headerActions: {
     flexDirection: 'row',
@@ -121,14 +123,18 @@ const styles = StyleSheet.create({
     backgroundColor: 'rgba(255, 255, 255, 0.2)',
     justifyContent: 'center',
     alignItems: 'center',
+    borderWidth: 1,
+    borderColor: 'rgba(1, 3, 26, 0.2)',
   },
   statsContainer: {
     flexDirection: 'row',
     justifyContent: 'space-around',
-    backgroundColor: 'rgba(255, 255, 255, 0.15)',
+    backgroundColor: 'rgba(255, 255, 255, 0.3)',
     borderRadius: 20,
     padding: 12,
     marginBottom: 25,
+    borderWidth: 1,
+    borderColor: 'rgba(1, 3, 26, 0.2)',
   },
   statItem: {
     alignItems: 'center',
@@ -136,12 +142,12 @@ const styles = StyleSheet.create({
   statNumber: {
     fontSize: 24,
     fontWeight: 'bold',
-    color: '#fff',
+    color: '#01031A',
     marginBottom: 4,
   },
   statLabel: {
     fontSize: 14,
-    color: '#E5E7EB',
+    color: '#01031A',
   },
   scrollView: {
     flex: 1,
@@ -159,11 +165,15 @@ const styles = StyleSheet.create({
     borderRadius: 15,
     overflow: 'hidden',
     position: 'relative',
+    backgroundColor: 'rgba(255, 255, 255, 0.2)',
+    borderWidth: 1,
+    borderColor: 'rgba(1, 3, 26, 0.2)',
   },
   thumbnail: {
     width: '100%',
     height: '100%',
-    backgroundColor: 'rgba(255, 255, 255, 0.1)',
+    backgroundColor: 'rgba(255, 255, 255, 0.2)',
+    borderRadius: 12,
   },
   mediaTypeOverlay: {
     position: 'absolute',

@@ -61,7 +61,7 @@ const TransactionItem = ({ item }: TransactionItemProps) => (
 
 const WalletScreen = () => {
   return (
-    <LinearGradient colors={['#6B7280', '#4B5563']} style={styles.container}>
+    <LinearGradient colors={['#8BEDDE', '#D6EFFF']} start={{x: 0, y: 0}} end={{x: 1, y: 0}} style={styles.container}>
       <SafeAreaView style={styles.safeArea}>
         <ScrollView showsVerticalScrollIndicator={false} contentContainerStyle={styles.scrollContent}>
           {/* Header component matching HomeScreen */}
@@ -136,20 +136,22 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     marginTop: 25,
     marginBottom: 15,
-    backgroundColor: 'rgba(255, 255, 255, 0.15)',
+    backgroundColor: 'rgba(255, 255, 255, 0.3)',
     padding: 28,
     borderRadius: 24,
     marginHorizontal: 0,
+    borderWidth: 1,
+    borderColor: 'rgba(1, 3, 26, 0.2)',
   },
   greeting: { 
     fontSize: 28, 
     fontWeight: 'bold', 
-    color: '#fff',
+    color: '#01031A',
     marginBottom: 6,
   },
   subGreeting: { 
     fontSize: 16, 
-    color: '#E5E7EB',
+    color: '#01031A',
     lineHeight: 22,
   },
   avatar: {
@@ -157,25 +159,27 @@ const styles = StyleSheet.create({
     height: 64,
     borderRadius: 32,
     borderWidth: 3,
-    borderColor: 'rgba(255, 255, 255, 0.3)',
+    borderColor: 'rgba(1, 3, 26, 0.3)',
   },
   balanceContainer: {
     alignItems: 'center',
     marginVertical: 30,
-    backgroundColor: 'rgba(255, 255, 255, 0.1)',
+    backgroundColor: 'rgba(255, 255, 255, 0.3)',
     borderRadius: 24,
     padding: 28,
     marginHorizontal: 0,
+    borderWidth: 1,
+    borderColor: 'rgba(1, 3, 26, 0.2)',
   },
   balanceLabel: {
     fontSize: 20,
-    color: '#E5E7EB',
+    color: '#01031A',
     marginBottom: 8,
   },
   balanceAmount: {
     fontSize: 42,
     fontWeight: 'bold',
-    color: '#fff',
+    color: '#01031A',
     marginVertical: 12,
   },
   toggleContainer: {
@@ -201,42 +205,39 @@ const styles = StyleSheet.create({
     paddingHorizontal: 0,
   },
   depositButton: {
-    backgroundColor: '#374151',
+    backgroundColor: 'rgba(1, 3, 26, 0.9)',
     paddingVertical: 18,
     paddingHorizontal: 32,
     borderRadius: 16,
     flex: 1,
     marginRight: 12,
     alignItems: 'center',
+    borderWidth: 1,
+    borderColor: 'rgba(1, 3, 26, 0.2)',
     shadowColor: '#000',
     shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.2,
+    shadowOpacity: 0.1,
     shadowRadius: 4,
     elevation: 4,
   },
   depositButtonText: {
-    color: '#fff',
+    color: '#FFFFFF',
     fontSize: 18,
     fontWeight: '600',
   },
   withdrawButton: {
-    backgroundColor: 'rgba(255, 255, 255, 0.15)',
+    backgroundColor: 'rgba(255, 255, 255, 0.3)',
     borderWidth: 2,
-    borderColor: 'rgba(255, 255, 255, 0.3)',
+    borderColor: '#01031A',
     paddingVertical: 18,
     paddingHorizontal: 32,
     borderRadius: 16,
     flex: 1,
     marginLeft: 12,
     alignItems: 'center',
-    shadowColor: '#000',
-    shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.2,
-    shadowRadius: 4,
-    elevation: 4,
   },
   withdrawButtonText: {
-    color: '#fff',
+    color: '#01031A',
     fontSize: 18,
     fontWeight: '600',
   },
@@ -257,11 +258,11 @@ const styles = StyleSheet.create({
   transactionsTitle: {
     fontSize: 24,
     fontWeight: 'bold',
-    color: '#fff',
+    color: '#01031A',
   },
   seeAllText: {
     fontSize: 16,
-    color: '#E5E7EB',
+    color: '#01031A',
     textDecorationLine: 'underline',
   },
   transactionsList: {
@@ -272,23 +273,22 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     marginBottom: 24,
-    backgroundColor: 'rgba(255, 255, 255, 0.1)',
+    backgroundColor: 'rgba(255, 255, 255, 0.3)',
     padding: 20,
     borderRadius: 16,
     borderWidth: 1,
-    borderColor: 'rgba(255, 255, 255, 0.2)',
+    borderColor: 'rgba(1, 3, 26, 0.2)',
   },
   transactionIconContainer: {
     width: 56,
     height: 56,
     borderRadius: 16,
-    backgroundColor: '#374151',
+    backgroundColor: 'rgba(255, 255, 255, 0.2)',
     marginRight: 18,
-    shadowColor: '#000',
-    shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.2,
-    shadowRadius: 4,
-    elevation: 4,
+    borderWidth: 1,
+    borderColor: 'rgba(1, 3, 26, 0.2)',
+    justifyContent: 'center',
+    alignItems: 'center',
   },
   transactionIcon: {
     // Placeholder for an actual icon
@@ -299,12 +299,12 @@ const styles = StyleSheet.create({
   transactionName: {
     fontSize: 18,
     fontWeight: '600',
-    color: '#fff',
+    color: '#01031A',
     marginBottom: 4,
   },
   transactionTime: {
     fontSize: 15,
-    color: '#D1D5DB',
+    color: '#01031A',
     marginTop: 2,
   },
   transactionAmount: {
@@ -313,12 +313,12 @@ const styles = StyleSheet.create({
   transactionAmountUSD: {
     fontSize: 18,
     fontWeight: 'bold',
-    color: '#fff',
+    color: '#01031A',
     marginBottom: 4,
   },
   transactionAmountCrypto: {
     fontSize: 15,
-    color: '#D1D5DB',
+    color: '#01031A',
     marginTop: 2,
   },
 });
