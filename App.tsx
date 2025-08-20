@@ -70,7 +70,7 @@ const App = () => {
               </View>
             );
           },
-          // Styling for the tab bar
+          // Styling for the tab bar (Checklist item #9: Dribbble-inspired design)
           tabBarActiveTintColor: 'rgba(1, 3, 26, 0.9)',
           tabBarInactiveTintColor: 'rgba(1, 3, 26, 0.5)',
           tabBarShowLabel: true,
